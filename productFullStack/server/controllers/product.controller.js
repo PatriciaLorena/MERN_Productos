@@ -22,6 +22,20 @@ module.exports = {
                 res.status(400).json({ message: "something went wrong", error: err })
             );
     },
+    updateOneProdutById: (req, res) => {
+        ProductModel.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true})
+            .then((updatedProduct) => res.status(200).json({ products: updatedProduct }))
+            .catch((err) =>
+                res.status(400).json({ message: "something went wrong", error: err })
+            );
+    },
+    deleteOneProductById: (req, res) => {
+        ProductModel.deleteOne({ _id: req.params.id })
+            .then((result) => res.status(200).json({ users: result }))
+            .catch((err) =>
+                res.status(400).json({ message: "something went wrong", error: err })
+            );
+    },
 
 }
 
